@@ -1,21 +1,21 @@
 App = {
-    web3Provider: null,
+    web3Provider: "127.0.0.1:8585",
     contracts: {},
     emptyAddress: "0x0000000000000000000000000000000000000000",
-    sku: 0,
-    upc: 0,
+    sku: 1,
+    upc: 1,
     metamaskAccountID: "0x0000000000000000000000000000000000000000",
-    ownerID: "0x0000000000000000000000000000000000000000",
-    originFarmerID: "0x0000000000000000000000000000000000000000",
-    originFarmName: null,
-    originFarmInformation: null,
-    originFarmLatitude: null,
-    originFarmLongitude: null,
-    productNotes: null,
+    ownerID: "0x8f6C722490C4eD25141a7aeD22a6cf19A4C53734",
+    originFarmerID: "0xd45261d1aa720B46eE9AF8061d07f6E8aDBBAf11",
+    originFarmName: "UdaCity Farm Name",
+    originFarmInformation: "UdaCity Form Info",
+    originFarmLatitude: "-0998900",
+    originFarmLongitude: "980998898",
+    productNotes: "product Note",
     productPrice: 0,
-    distributorID: "0x0000000000000000000000000000000000000000",
-    retailerID: "0x0000000000000000000000000000000000000000",
-    consumerID: "0x0000000000000000000000000000000000000000",
+    distributorID: "0x9aa1AD062719157787E9548348863ed9Bd4EA160",
+    retailerID: "0x9E17801f852453Df78AbcFa10Ba2e5e65EE3EBE4",
+    consumerID: "0xed88e160978e3fcbD0BC0266D693999b0a2c4CC8",
 
     init: async function () {
         App.readForm();
@@ -74,7 +74,7 @@ App = {
         }
         // If no injected web3 instance is detected, fall back to Ganache
         else {
-            App.web3Provider = new Web3.providers.HttpProvider('http://localhost:7545');
+            App.web3Provider = new Web3.providers.HttpProvider('http://localhost:8585');
         }
 
         App.getMetaskAccountID();

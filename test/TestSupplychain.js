@@ -35,6 +35,7 @@ contract('SupplyChain', function(accounts) {
     ///(8) 0xe07b5ee5f738b2f87f88b99aac9c64ff1e0c7917
     ///(9) 0xbd3ff2e3aded055244d66544c9c059fa0851da44
 
+
     console.log("ganache-cli accounts used here...")
     console.log("Contract Owner: accounts[0] ", accounts[0])
     console.log("Farmer: accounts[1] ", accounts[1])
@@ -62,8 +63,6 @@ contract('SupplyChain', function(accounts) {
         // Retrieve the just now saved item from blockchain by calling function fetchItem()
         const resultBufferOne = await supplyChain.fetchItemBufferOne.call(upc)
         const resultBufferTwo = await supplyChain.fetchItemBufferTwo.call(upc)
-
-        console.log(JSON.stringify(resultBufferOne));
 
         // Verify the result set
         assert.equal(resultBufferOne[0], sku, 'Error: Invalid item SKU')
@@ -219,7 +218,7 @@ contract('SupplyChain', function(accounts) {
         });
 
         // Mark an item as Shipped by calling function shipItem()
-        await supplyChain.shipItem(upc);
+        await supplyChain.shipItem(upc, {sender: distributorID});
 
         // Retrieve the just now saved item from blockchain by calling function fetchItem()
         const resultBufferOne = await supplyChain.fetchItemBufferOne.call(upc);
@@ -254,7 +253,7 @@ contract('SupplyChain', function(accounts) {
         });
                 
         // Mark an item as Sold by calling function receiveItem()
-        await supplyChain.receiveItem(upc);
+        await supplyChain.receiveItem(upc, {sender: retailerID});
 
 
         // Retrieve the just now saved item from blockchain by calling function fetchItem()
@@ -289,10 +288,9 @@ contract('SupplyChain', function(accounts) {
              eventEmitted = true;
          });
         
-
         // Mark an item as Sold by calling function buyItem()
-        await supplyChain.purchaseItem(upc, {from: consumerID});
-
+        let result = await supplyChain.purchaseItem(upc, {sender: consumerID});
+         //console.log('result:'+ JSON.stringify(result));
         // Retrieve the just now saved item from blockchain by calling function fetchItem()
         const resultBufferOne = await supplyChain.fetchItemBufferOne.call(upc);
         const resultBufferTwo = await supplyChain.fetchItemBufferTwo.call(upc);
