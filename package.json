@@ -15,6 +15,6 @@
   },
   "dependencies": {
     "truffle-assertions": "^0.9.0",
-    "truffle-hdwallet-provider": "^1.0.9"
+    "truffle-hdwallet-provider": "^1.0.17"
   }
 }
